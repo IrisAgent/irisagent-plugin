@@ -1,0 +1,19 @@
+{
+  "name": "irisagent",
+  "version": "1.0.0",
+  "description": "Grounded answers and draft ticket replies from your knowledge base, plus trends, escalations, account health, agent performance, AI answer audits, QA, knowledge drafts, Jira impact, and chatbot insights. Answers cite their sources. Read only.",
+  "author": {
+    "name": "IrisAgent Inc.",
+    "email": "info@irisagent.com",
+    "url": "https://irisagent.com"
+  },
+  "homepage": "https://docs.irisagent.com/deploying-irisagent/MCP-Server",
+  "license": "MIT",
+  "keywords": [
+    "customer support",
+    "tickets",
+    "support analytics",
+    "qa",
+    "knowledge base"
+  ]
+}

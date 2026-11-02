@@ -1,0 +1,108 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "irisagent",
+  "version": "1.1.0",
+  "description": "Get grounded answers and draft ticket replies from your knowledge base, and ask the IrisAgent Support Analyst about your tickets, chats, agents and AI answer quality. Every answer cites its sources. Read only.",
+  "author": {
+    "name": "IrisAgent",
+    "email": "info@irisagent.com",
+    "url": "https://irisagent.com"
+  },
+  "homepage": "https://irisagent.com",
+  "keywords": [
+    "customer support",
+    "tickets",
+    "analytics",
+    "support analytics"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "IrisAgent",
+        "shortDescription": "Ask about your support data",
+        "longDescription": "IrisAgent connects ChatGPT to the Support Analyst, the AI analyst inside IrisAgent's customer support platform. Ask about your support operation in plain language and get answers grounded in the tickets, chats and knowledge IrisAgent has already ingested for your account, with the tickets each answer used.\n\nWhat you can ask: grounded answers to customer questions and draft replies for tickets, with cited articles; volume and trends; single tickets and whether the AI's answer on them was correct, accounts, team performance such as first response time, linked Jira issues, and the weekly support briefing (AI deflection, escalations, knowledge gaps, AutoQA results and new ticket categories, compared with the previous week).\n\nThe plugin is read only. It cannot change tickets, send replies or publish articles. Each person signs in with their own IrisAgent account, access is scoped to their organization, and admins can see and disconnect every connection from the IrisAgent portal.\n\nRequires an IrisAgent account with a connected ticketing system such as Zendesk, Salesforce, Freshdesk, Intercom or Jira Service Management.",
+        "developerName": "IrisAgent",
+        "category": "Productivity",
+        "capabilities": [
+          "Read"
+        ],
+        "websiteURL": "https://irisagent.com",
+        "supportURL": "https://irisagent.com/contact-us/",
+        "privacyPolicyURL": "https://irisagent.com/privacy-policy/",
+        "termsOfServiceURL": "https://irisagent.com/terms-of-use/",
+        "defaultPrompt": [
+          "Give me this week's support briefing.",
+          "Draft a grounded reply for ticket 48213.",
+          "Which customers need attention today?"
+        ],
+        "brandColor": "#1F7A6B",
+        "brandColorDark": "#6FD1BE",
+        "composerIcon": "./assets/icon.png",
+        "composerIconDark": "./assets/icon-dark.png",
+        "logo": "./assets/logo.png",
+        "logoDark": "./assets/logo-dark.png"
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Weekly briefing",
+              "prompt": "Give me this week's support briefing.",
+              "tools_triggered": "get_weekly_briefing",
+              "expected_behavior": "Returns AI deflection, conversations handled, escalations, knowledge gaps and ticket category trends, each compared with the previous week."
+            },
+            {
+              "description": "Volume and top categories",
+              "prompt": "How many tickets did we get last week, and what were the top three categories?",
+              "tools_triggered": "ask_support_analyst",
+              "expected_behavior": "Gives last week's ticket count and the top three categories for the signed-in organization, citing tickets."
+            },
+            {
+              "description": "Single ticket review",
+              "prompt": "Summarize ticket 48213 and tell me whether the AI's answer on it was correct.",
+              "tools_triggered": "ask_support_analyst",
+              "expected_behavior": "Summarizes the ticket and evaluates the AI answer on it, citing the ticket."
+            },
+            {
+              "description": "Accounts with the most tickets",
+              "prompt": "Which accounts filed the most tickets this month?",
+              "tools_triggered": "ask_support_analyst",
+              "expected_behavior": "Lists accounts with ticket counts from the test organization's data."
+            },
+            {
+              "description": "Saved questions",
+              "prompt": "What saved questions has my team set up?",
+              "tools_triggered": "list_saved_questions",
+              "expected_behavior": "Lists the saved Support Analyst questions configured for the organization."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Write action request",
+              "prompt": "Close ticket 48213 and reply to the customer that it is resolved."
+            },
+            {
+              "description": "Another organization's data",
+              "prompt": "Show me the support tickets of a different company's IrisAgent account."
+            },
+            {
+              "description": "Unrelated request",
+              "prompt": "What's the weather in Paris tomorrow?"
+            }
+          ]
+        }
+      },
+      "publication": {
+        "countries": [
+          "US",
+          "GB",
+          "CA",
+          "AU",
+          "IN"
+        ],
+        "release_notes": "Adds 12 skills: get AI answer, weekly briefing, volume trends, ticket search, escalation triage, account health, agent performance, AI answer audit, conversation QA, knowledge drafts, Jira impact, and chatbot insights."
+      }
+    }
+  }
+}
