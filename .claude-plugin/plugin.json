@@ -15,5 +15,11 @@
     "support analytics",
     "qa",
     "knowledge base"
-  ]
+  ],
+  "displayName": "IrisAgent",
+  "repository": "https://github.com/IrisAgent/irisagent-plugin",
+  "privacyPolicyUrl": "https://irisagent.com/privacy-policy/",
+  "termsOfServiceUrl": "https://irisagent.com/terms-of-use/",
+  "supportUrl": "https://irisagent.com/contact-us/",
+  "documentationUrl": "https://docs.irisagent.com/deploying-irisagent/MCP-Server"
 }
